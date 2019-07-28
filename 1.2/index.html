@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #2980B9;
+            font-family: Helvetica, sans-serif;
+        }
+        .card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30rem;
+            background-color: #FFF;
+            padding: 0 2rem;
+            border-radius: 0.25rem;
+        }
+        .tab-controls {
+            display: flex;
+            flex-flow: row nowrap;
+            margin: 1.5rem 0 1.5rem 0;
+        }
+        .tab-input {
+            flex-grow: 4;
+            border: none;
+            border-bottom: 2px solid #DEDEDE;
+            transition: all 0.2s;
+        }
+        .tab-input:focus {
+            outline: none;
+            border-bottom-color: #2C2C2C;
+        }
+        .change-tab-btn {
+            font-family: inherit;
+            font-size: 0.875rem;
+            flex-grow: 1;
+            background-color: #FFF;
+            border: none;
+            color: #2C2C2C;
+            padding: 1rem 0;
+            margin-left: 0.5rem;
+            border-radius: 0.25rem;
+            transition: all 0.2s;
+        }
+        .change-tab-btn:hover {
+            background-color: #E5E5E5;
+        }
+        .change-tab-btn:focus {
+            outline: none;
+        }
+        .rating {
+            display: flex;
+            flex-flow: column nowrap;
+            margin-bottom: 1.5rem;
+        }
+        .rating-options {
+            display: flex;
+            flex-flow: row nowrap;
+            margin-bottom: 1.5rem;
+        }
+        .rating-option {
+            margin-right: 0.75rem;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #CCC;
+            transition: all 0.2s;
+        }
+        .rating-option:hover {
+            cursor: pointer;
+            color: #AAA;
+        }
+        .rating-option.selected {
+            color: #2C2C2C;
+        }
+        .current-option {
+            font-size: 0.875rem;
+            margin: 0;
+        }
+    </style>
+    <title>Progress navigation</title>
+</head>
+<body>
+    <!--
+        Create Tabs component, that has several tab buttons. Each button toggles active tab content.
+        Add a text input with a button. User can enter any tab index in the input and toggle it by clicking the button.
+        Indexes in this task are not the same as they are used in JS, so by entering 1 - first tab should be shown, not 0.
+        If invalid index is entered - browser must show an alert.
+    -->
+    <div class="card">
+        <div class="tab-controls">
+            <input placeholder="Enter tab index" type="number" class="tab-input">
+            <button class="change-tab-btn">Change tab</button>
+        </div>
+        <div class="rating">
+            <div class="rating-options">
+                <span class="rating-option selected" data-name="Positive">POSITIVE</span>
+                <span class="rating-option" data-name="Negative">NEGATIVE</span>
+                <span class="rating-option" data-name="Neutral">NEUTRAL</span>
+            </div>
+            <p class="current-option"></p>
+        </div>
+    </div>
+
+    <script>
+        let selectedRating = document.querySelector('.rating-option.selected')
+        const currentOptionText = document.querySelector('.current-option')
+        const ratingOptions = document.querySelectorAll('.rating-option')
+        const changeTabBtn = document.querySelector('.change-tab-btn')
+        const tabIndexInput = document.querySelector('.tab-input')
+
+        let changeRating = (newOption) => {
+            selectedRating.classList.remove('selected')
+            selectedRating = newOption
+            selectedRating.classList.add('selected')
+            currentOptionText.textContent = `${selectedRating.dataset.name} content`
+        }
+
+        ratingOptions.forEach(option => {
+            option.addEventListener('click', _ => {
+                changeRating(option)
+            })
+        })
+
+        changeTabBtn.addEventListener('click', _ => {
+            const tabIndex = parseInt(tabIndexInput.value)
+            if (tabIndex >= 1 && tabIndex <= 3) changeRating(ratingOptions[tabIndex - 1])
+            else alert('Tab index must be a number between 1 and 3')
+        })
+
+        currentOptionText.textContent = `${selectedRating.dataset.name} content`
+    </script>
+</body>
+</html>
