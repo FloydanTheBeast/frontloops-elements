@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <title>Random switches</title>
+    <style>
+        body {
+            background-color: #3F729E;
+        }
+        .card {
+            position: absolute;
+            width: 10rem;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFF;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+        }
+        .switch-btn {
+            height: 20px;
+            width: 40px;
+            border: 1px solid #E1E1E1;
+            border-radius: 20px;
+            margin: 1rem auto;
+            transition: all 0.2s ease-in;
+        }
+        .switch-btn::before {
+            transition: all 0.25s;
+            content: '';
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            margin: auto;
+            border-radius: 20px;
+            border: 1px solid #E1E1E1;
+            bottom: 1px;
+            right: 1px;
+            background-color: #FFF;
+        }
+        .switch-btn.active {
+            background-color: #2BCC71;
+        }
+        .switch-btn.active::before {
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+    <!--
+        Create several switcher elements.
+        Whenever you change any of them - all other switchers must randomly change their state.
+    -->
+    <div class="card">
+        <div class="switch-btn"></div>
+        <div class="switch-btn"></div>
+        <div class="switch-btn"></div>
+        <div class="switch-btn"></div>
+        <div class="switch-btn"></div>
+    </div>
+
+    <script>
+        const switchBtns = document.querySelectorAll('.switch-btn')
+
+        const toggleRandomBtns = (clickedIndex) => {
+            switchBtns[clickedIndex].classList.toggle('active')
+            for (let i = 0; i < switchBtns.length; i++)
+                if (i != clickedIndex && Math.random() >= 0.7)
+                    switchBtns[i].classList.toggle('active')
+        }
+
+        switchBtns.forEach((btn, i) => btn.addEventListener('click', () => {
+            toggleRandomBtns(i)
+        }))
+    </script>
+</body>
+</html>
