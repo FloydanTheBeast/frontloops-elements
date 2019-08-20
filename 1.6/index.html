@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title>3d card</title>
+    <style>
+        body {
+            background-color: #2a2a61;
+        }
+        .card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform-origin: 50% 50%;
+            width: 25rem;
+            height: 25rem;
+            border-radius: 0.25rem;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        Create a card which rotates in "3d" based on the mouse cursor position on the screen.
+    -->
+    <div class="card">
+
+    </div>
+    <script>
+        const card = document.querySelector('.card')
+
+        document.addEventListener('mousemove', e => {
+            let { clientX: x, clientY: y  } = e,
+                { clientWidth: width, clientHeight: height} = document.documentElement
+            card.style.transform = `translate(-50%, -50%)
+                                    rotate3d(${Math.abs((height/2-y))/height}, ${Math.abs(width/2-x)/width}, 0, 45deg)`
+        })
+    </script>
+</body>
+</html>
