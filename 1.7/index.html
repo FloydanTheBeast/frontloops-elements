@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <title>Show on scroll</title>
+    <style>
+        .rectangle-card {
+            width: 60vw;
+            height: 60vh;
+            border-radius: 0.25rem;
+            background-color: #3565A3;
+            margin: 10rem auto;
+            transition: all 0.4s ease-out;
+        }
+
+        .rectangle-card:not(.visible) {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        Write a script that tracks whenever elements appears on the screen and makes them visible then
+    -->
+</body>
+    <div class="rectangle-card"></div>
+    <div class="rectangle-card"></div>
+    <div class="rectangle-card"></div>
+    <div class="rectangle-card"></div>
+    <div class="rectangle-card"></div>
+    <div class="rectangle-card"></div>
+    <div class="rectangle-card"></div>
+
+    <script>
+        const rects = document.querySelectorAll('.rectangle-card')
+        const topMargin = 50
+
+        const CheckVisibility = () => {
+            rects.forEach(el => {
+                const rect = el.getBoundingClientRect()
+                if (rect.top + topMargin <= window.innerHeight)
+                    el.classList.add('visible')
+            })
+        } 
+
+        document.addEventListener('scroll', e => {
+            CheckVisibility()
+        })
+
+        document.onload = CheckVisibility();
+    </script>
+</html>
