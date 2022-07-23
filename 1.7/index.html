@@ -34,18 +34,21 @@
         const rects = document.querySelectorAll('.rectangle-card')
         const topMargin = 50
 
-        const CheckVisibility = () => {
+        const toggleVisibility = () => {
             rects.forEach(el => {
                 const rect = el.getBoundingClientRect()
-                if (rect.top + topMargin <= window.innerHeight)
+                if (rect.top + topMargin <= window.innerHeight) {
                     el.classList.add('visible')
+                } else {
+                    el.classList.remove('visible')
+                }
             })
         } 
 
         document.addEventListener('scroll', e => {
-            CheckVisibility()
+            toggleVisibility()
         })
 
-        document.onload = CheckVisibility();
+        document.onload = toggleVisibility();
     </script>
 </html>
