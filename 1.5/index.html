@@ -1,69 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Auto type</title>
     <style>
-        @keyframes blink-caret {
-            50% {
-                border-color: transparent;
-            }
+      @keyframes blink-caret {
+        50% {
+          border-color: transparent;
         }
-        body {
-            background-color: #f7d283;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .typing-simulator {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            font-weight: 600;
-        }
-        .changing-text {
-            border-right: 0.25rem solid #000;
-            animation: blink-caret .75s infinite;
-        }
+      }
+      body {
+        background-color: #f7d283;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .typing-simulator {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        font-weight: 600;
+      }
+      .changing-text {
+        border-right: 0.25rem solid #000;
+        animation: blink-caret 0.75s infinite;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!--
         Create a string of text that simulates auto-type effect.
         After each word is typed - there should be a pause, before starting typing the next one.
         All the words variants should be set in the javascript code.
     -->
     <div class="typing-simulator">
-        We can help you with
-        <span class="changing-text"></span>
+      We can help you with
+      <span class="changing-text"></span>
     </div>
 
     <script>
-        const changingText = document.querySelector('.changing-text')
-        const wordVariations = ['frontend', 'backend', 'UX design']
+      const changingText = document.querySelector('.changing-text');
+      const wordVariations = ['frontend', 'backend', 'UX design'];
 
-        const startTyping = (wordList, wordIndex, typingDelay) => {
-            const currentWord = wordList[wordIndex % wordVariations.length]
-            simulateTyping(currentWord, typingDelay)
-            setTimeout(() => startTyping(wordList, ++wordIndex, typingDelay), (typingDelay + Math.floor(typingDelay / 2)) * currentWord.length + (typingDelay + 100) * 4 + 25)
+      const startTyping = (wordList, wordIndex, typingDelay) => {
+        const currentWord = wordList[wordIndex % wordVariations.length];
+        simulateTyping(currentWord, typingDelay);
+        setTimeout(
+          () => startTyping(wordList, ++wordIndex, typingDelay),
+          (typingDelay + Math.floor(typingDelay / 2)) * currentWord.length +
+            (typingDelay + 100) * 4 +
+            25,
+        );
+      };
+
+      const simulateTyping = (word, typingDelay, charIndex = 0, isDeleting = false) => {
+        if (!isDeleting) {
+          changingText.textContent += word[charIndex];
+          if (charIndex < word.length - 1)
+            setTimeout(() => simulateTyping(word, typingDelay, ++charIndex), typingDelay);
+          else
+            setTimeout(
+              () => simulateTyping(word, typingDelay, charIndex, true),
+              (typingDelay + 100) * 4,
+            );
+        } else {
+          changingText.textContent = changingText.textContent.slice(0, -1);
+          if (charIndex >= 0)
+            setTimeout(
+              () => simulateTyping(word, typingDelay, --charIndex, true),
+              Math.floor(typingDelay / 2),
+            );
         }
+        // if (isDeleting && charIndex == 0)
+      };
 
-        const simulateTyping = (word, typingDelay, charIndex = 0, isDeleting = false) => {
-            if (!isDeleting) {
-                changingText.textContent += word[charIndex]
-                if (charIndex < word.length - 1) setTimeout(() => simulateTyping(word, typingDelay, ++charIndex), typingDelay)
-                else setTimeout(() => simulateTyping(word, typingDelay, charIndex, true), (typingDelay + 100) * 4)
-            } else {
-                changingText.textContent = changingText.textContent.slice(0, -1)
-                if (charIndex >= 0) setTimeout(() => simulateTyping(word, typingDelay, --charIndex, true), Math.floor(typingDelay / 2))
-            }
-            // if (isDeleting && charIndex == 0)
-        }
-
-        window.onload = () => { startTyping(wordVariations, 0, 150) }
-        // setInterval(() => console.log(isTyping), 300)
-        // while (1) console.log(isTyping)
+      window.onload = () => {
+        startTyping(wordVariations, 0, 150);
+      };
+      // setInterval(() => console.log(isTyping), 300)
+      // while (1) console.log(isTyping)
     </script>
-</body>
+  </body>
 </html>

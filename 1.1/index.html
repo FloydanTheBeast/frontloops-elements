@@ -1,39 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Segmented control</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <!--
         Create a segmented control that turns into a <select> for mobile screens.
         They should sync whenever any of them is changed.
     -->
     <div class="content">
-        <div class="mobile-controls">
-            <select name="" id="">
-                <option value="">Sort by price</option>
-                <option value="">Sort by name</option>
-                <option value="">Sort by relevance</option>
-            </select>
-        </div>
-        <div class="controls">
-            <button>Sort by price</button>
-            <button>Sort by name</button>
-            <button>Sort by relevance</button>
-        </div> 
+      <div class="mobile-controls">
+        <select name="" id="">
+          <option value="">Sort by price</option>
+          <option value="">Sort by name</option>
+          <option value="">Sort by relevance</option>
+        </select>
+      </div>
+      <div class="controls">
+        <button>Sort by price</button>
+        <button>Sort by name</button>
+        <button>Sort by relevance</button>
+      </div>
     </div>
-</body>
-<script>
-    const controlBtns = document.querySelectorAll('.controls>button')
+  </body>
+  <script>
+    const controlBtns = document.querySelectorAll('.controls>button');
     let selectedBtn;
 
     controlBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (selectedBtn) selectedBtn.classList.remove('selected')
-            selectedBtn = btn
-            selectedBtn.classList.add('selected')
-        }
-    )})
-</script>
+      btn.addEventListener('click', () => {
+        if (selectedBtn) selectedBtn.classList.remove('selected');
+        selectedBtn = btn;
+        selectedBtn.classList.add('selected');
+      });
+    });
+  </script>
 </html>

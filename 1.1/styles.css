@@ -1,90 +1,90 @@
 * {
-    font: 0.75rem sans-serif; 
+  font: 0.75rem sans-serif;
 }
 
 body {
-    background-color: #74B9FF;
+  background-color: #74b9ff;
 }
 
 .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 3rem 1rem;
-    border-radius: 0.25rem;
-    box-shadow: 0.25rem 0.375rem 2rem #444;
-    width: 80%;
-    height: 3rem; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 3rem 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0.25rem 0.375rem 2rem #444;
+  width: 80%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mobile-controls {
-    display: none;
-    margin: 0 aut;
-    width: 80%;
-    min-width: 120px;
+  display: none;
+  margin: 0 aut;
+  width: 80%;
+  min-width: 120px;
 }
 
 .mobile-controls > select {
-    display: block;
-    width: 80%;
-    max-width: 24rem;
-    margin: 0 auto;
-    padding: 0.5rem;
-    border: 2px solid #4E8CFF;
-    background-color: #FFF;
-    border-radius: 0.25rem;
-    height: 26.5px;
+  display: block;
+  width: 80%;
+  max-width: 24rem;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border: 2px solid #4e8cff;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  height: 26.5px;
 }
 
 .controls {
-    margin: 0 auto;
-    display: flex;
-    max-width: 24rem;
-    width: 100%;
+  margin: 0 auto;
+  display: flex;
+  max-width: 24rem;
+  width: 100%;
 }
 
 .controls > button {
-    /* font-weight: 500; */
-    border: 2px solid #4E8CFF;
-    flex: 1 1 0;
-    padding: 0.5rem 0;
-    background-color: #FFF;
+  /* font-weight: 500; */
+  border: 2px solid #4e8cff;
+  flex: 1 1 0;
+  padding: 0.5rem 0;
+  background-color: #fff;
 }
 
 .controls > button:first-child {
-    border-right: none;
-    border-radius: 0.25rem 0 0 0.25rem;
+  border-right: none;
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .controls > button:last-child {
-    border-left: none;
-    border-radius: 0 0.25rem 0.25rem 0;
+  border-left: none;
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 .controls > button.selected {
-    background-color: #4E8CFF;
-    color: #FFF;
+  background-color: #4e8cff;
+  color: #fff;
 }
 
 .controls > button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .controls > button:focus {
-    outline: none;
+  outline: none;
 }
 
 @media screen and (max-width: 480px) {
-    .mobile-controls {
-        display: block;
-    }
+  .mobile-controls {
+    display: block;
+  }
 
-    .controls {
-        display: none;
-    }
+  .controls {
+    display: none;
+  }
 }

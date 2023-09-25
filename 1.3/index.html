@@ -1,82 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Random switches</title>
     <style>
-        html {
-            font-size: 36px;
-        }
-        body {
-            background-color: #3F729E;
-        }
-        .card {
-            position: absolute;
-            width: 10rem;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #FFF;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-        }
-        .switch-btn {
-            height: 1.25rem;
-            width: 2.5rem;
-            border: 0.0625rem solid #E1E1E1;
-            border-radius: 1.25rem;
-            margin: 1rem auto;
-            transition: all 0.15s ease-in;
-        }
-        .switch-btn:hover {
-            cursor: pointer;
-        }
-        .switch-btn::before {
-            transition: all 0.15s;
-            content: '';
-            position: relative;
-            display: inline-block;
-            padding: 0.625rem;
-            margin: auto;
-            border-radius: 1.25rem;
-            border: 0.0625rem solid #E1E1E1;
-            bottom: 0.0625rem;
-            right: 0.0625rem;
-            background-color: #FFF;
-        }
-        .switch-btn.active {
-            background-color: #2BCC71;
-        }
-        .switch-btn.active::before {
-            transform: translateX(1.25rem);
-        }
+      html {
+        font-size: 36px;
+      }
+      body {
+        background-color: #3f729e;
+      }
+      .card {
+        position: absolute;
+        width: 10rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+      }
+      .switch-btn {
+        height: 1.25rem;
+        width: 2.5rem;
+        border: 0.0625rem solid #e1e1e1;
+        border-radius: 1.25rem;
+        margin: 1rem auto;
+        transition: all 0.15s ease-in;
+      }
+      .switch-btn:hover {
+        cursor: pointer;
+      }
+      .switch-btn::before {
+        transition: all 0.15s;
+        content: '';
+        position: relative;
+        display: inline-block;
+        padding: 0.625rem;
+        margin: auto;
+        border-radius: 1.25rem;
+        border: 0.0625rem solid #e1e1e1;
+        bottom: 0.0625rem;
+        right: 0.0625rem;
+        background-color: #fff;
+      }
+      .switch-btn.active {
+        background-color: #2bcc71;
+      }
+      .switch-btn.active::before {
+        transform: translateX(1.25rem);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!--
         Create several switcher elements.
         Whenever you change any of them - all other switchers must randomly change their state.
     -->
     <div class="card">
-        <div class="switch-btn"></div>
-        <div class="switch-btn"></div>
-        <div class="switch-btn"></div>
-        <div class="switch-btn"></div>
-        <div class="switch-btn"></div>
+      <div class="switch-btn"></div>
+      <div class="switch-btn"></div>
+      <div class="switch-btn"></div>
+      <div class="switch-btn"></div>
+      <div class="switch-btn"></div>
     </div>
 
     <script>
-        const switchBtns = document.querySelectorAll('.switch-btn')
+      const switchBtns = document.querySelectorAll('.switch-btn');
 
-        const toggleRandomBtns = (clickedIndex) => {
-            switchBtns[clickedIndex].classList.toggle('active')
-            for (let i = 0; i < switchBtns.length; i++)
-                if (i != clickedIndex && Math.random() >= 0.7)
-                    switchBtns[i].classList.toggle('active')
-        }
+      const toggleRandomBtns = clickedIndex => {
+        switchBtns[clickedIndex].classList.toggle('active');
+        for (let i = 0; i < switchBtns.length; i++)
+          if (i != clickedIndex && Math.random() >= 0.7) switchBtns[i].classList.toggle('active');
+      };
 
-        switchBtns.forEach((btn, i) => btn.addEventListener('click', () => {
-            toggleRandomBtns(i)
-        }))
+      switchBtns.forEach((btn, i) =>
+        btn.addEventListener('click', () => {
+          toggleRandomBtns(i);
+        }),
+      );
     </script>
-</body>
+  </body>
 </html>

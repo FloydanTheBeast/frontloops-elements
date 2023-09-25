@@ -1,88 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Progress navigation</title>
     <style>
-        body {
-            background-color: #823BA4;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #FFF;
-            border-radius: 0.25rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-flow: row nowrap;
-            width: 40rem;
-        }
-        .passing-progress {
-            display: flex;
-            flex-flow: column nowrap;
-            width: 40%;
-        }
-        .progress-step {
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            margin: 0.25rem 0;
-            color: #8E8E8E;
-        }
-        .progress-step:hover {
-            cursor: pointer;
-        }
-        .progress-step-number {
-            margin-right: 0.5rem;
-            width: 1.5rem;
-            height: 1.5rem;
-            line-height: 1.5rem;
-            text-align: center;
-            border-radius: 50%;
-            font-weight: 600;
-        }
-        .progress-step.active .progress-step-number {
-            background-color: #2574AF;
-            color: #FFF;
-        }
-        .progress-step.active .progress-step-title {
-            color: #000;
-        }
-        .progress-step-title {
-            margin: 0;
-            /* left: 4rem; */
-        }
-        .current-step-hint {
-            margin: 0;
-        }
-        .nav-btns {
-            display: flex;
-            flex-flow: row wrap;
-            position: absolute;
-            bottom: 1.5rem;
-            /* transform: translateY(-25%); */
-        }
-        .btn {
-            padding: 0.75rem;
-            background-color: #E5E5E5;
-            transition: all 0.2s;
-            border-radius: 0.25rem;
-        }
-        .btn.hidden {
-            display: none;
-        }
-        .btn-previous {
-            margin-right: 0.25rem;
-        }
-        .btn:hover {
-            cursor: pointer;
-            background-color: #D6D6D6;
-        }
+      body {
+        background-color: #823ba4;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 0.25rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-flow: row nowrap;
+        width: 40rem;
+      }
+      .passing-progress {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 40%;
+      }
+      .progress-step {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        margin: 0.25rem 0;
+        color: #8e8e8e;
+      }
+      .progress-step:hover {
+        cursor: pointer;
+      }
+      .progress-step-number {
+        margin-right: 0.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: 600;
+      }
+      .progress-step.active .progress-step-number {
+        background-color: #2574af;
+        color: #fff;
+      }
+      .progress-step.active .progress-step-title {
+        color: #000;
+      }
+      .progress-step-title {
+        margin: 0;
+        /* left: 4rem; */
+      }
+      .current-step-hint {
+        margin: 0;
+      }
+      .nav-btns {
+        display: flex;
+        flex-flow: row wrap;
+        position: absolute;
+        bottom: 1.5rem;
+        /* transform: translateY(-25%); */
+      }
+      .btn {
+        padding: 0.75rem;
+        background-color: #e5e5e5;
+        transition: all 0.2s;
+        border-radius: 0.25rem;
+      }
+      .btn.hidden {
+        display: none;
+      }
+      .btn-previous {
+        margin-right: 0.25rem;
+      }
+      .btn:hover {
+        cursor: pointer;
+        background-color: #d6d6d6;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!--
         Create a progress navigation with previous/next buttons on each step and an overview of all steps.
         Clicking next button on last step should bring the final screen
@@ -90,99 +90,94 @@
         however you shouldn't be able to skip the next step, so if you're at 1 step - you can't go directly to 3.
     -->
     <div class="card">
-        <div class="passing-progress">
-            <div class="progress-step">
-                <span class="progress-step-number">1</span>
-                <p class="progress-step-title">Choose title</p>
-            </div>
-            <div class="progress-step">
-                <span class="progress-step-number">2</span>
-                <p class="progress-step-title">Choose description</p>
-            </div>
-            <div class="progress-step">
-                <span class="progress-step-number">3</span>
-                <p class="progress-step-title">Confirm date</p>
-            </div>
+      <div class="passing-progress">
+        <div class="progress-step">
+          <span class="progress-step-number">1</span>
+          <p class="progress-step-title">Choose title</p>
         </div>
-        <div class="content">
-            <p class="current-step-hint">Test</p>
-            <div class="nav-btns">
-                <div class="btn btn-previous">Test</div>
-                <div class="btn btn-next">Test</div>
-            </div>
+        <div class="progress-step">
+          <span class="progress-step-number">2</span>
+          <p class="progress-step-title">Choose description</p>
         </div>
+        <div class="progress-step">
+          <span class="progress-step-number">3</span>
+          <p class="progress-step-title">Confirm date</p>
+        </div>
+      </div>
+      <div class="content">
+        <p class="current-step-hint">Test</p>
+        <div class="nav-btns">
+          <div class="btn btn-previous">Test</div>
+          <div class="btn btn-next">Test</div>
+        </div>
+      </div>
     </div>
     <script>
-        const config = [
-            {
-                hint: 'Choose title content',
-                buttonNext: 'Submit title',
-                buttonPrevious: false
-            },
-            {
-                hint: 'Choose description content',
-                buttonNext: 'Submit description',
-                buttonPrevious: 'Back'
-            },
-            {
-                hint: 'Are you happy now?',
-                buttonNext: 'Yes, go ahead',
-                buttonPrevious: 'No, go back'
-            },
-            {
-                hint: 'Ok, we\'re done. Thanks for sending us your data!',
-                buttonNext: false,
-                buttonPrevious: false
-            }
-        ]
-        const progressIndicators = document.querySelectorAll('.progress-step')
-        const currentStepHint = document.querySelector('.current-step-hint')
-        const buttonNext = document.querySelector('.btn-next')
-        const buttonPrevious = document.querySelector('.btn-previous')
-        let currentStep = 0
+      const config = [
+        {
+          hint: 'Choose title content',
+          buttonNext: 'Submit title',
+          buttonPrevious: false,
+        },
+        {
+          hint: 'Choose description content',
+          buttonNext: 'Submit description',
+          buttonPrevious: 'Back',
+        },
+        {
+          hint: 'Are you happy now?',
+          buttonNext: 'Yes, go ahead',
+          buttonPrevious: 'No, go back',
+        },
+        {
+          hint: "Ok, we're done. Thanks for sending us your data!",
+          buttonNext: false,
+          buttonPrevious: false,
+        },
+      ];
+      const progressIndicators = document.querySelectorAll('.progress-step');
+      const currentStepHint = document.querySelector('.current-step-hint');
+      const buttonNext = document.querySelector('.btn-next');
+      const buttonPrevious = document.querySelector('.btn-previous');
+      let currentStep = 0;
 
-        const goToStep = (step) => {
+      const goToStep = step => {
+        progressIndicators.forEach((indicator, index) => {
+          if (currentStep <= step) {
+            if (index <= step) progressIndicators[index].classList.add('active');
+          } else {
+            if (index > step) progressIndicators[index].classList.remove('active');
+          }
 
-            progressIndicators.forEach((indicator, index) => {
-                if (currentStep <= step) {
-                    if (index <= step)
-                        progressIndicators[index].classList.add('active')
-                }
-                else {
-                    if (index > step)
-                        progressIndicators[index].classList.remove('active')
-                }
+          if (index - 1 <= step)
+            indicator.onclick = () => {
+              goToStep(index);
+              currentStep += index - step;
+            };
+          else indicator.onclick = null;
+        });
+        if (config[step].buttonPrevious) {
+          buttonPrevious.textContent = config[step].buttonPrevious;
+          buttonPrevious.classList.remove('hidden');
+          buttonPrevious.onclick = () => {
+            goToStep(--step);
+            currentStep--;
+          };
+        } else buttonPrevious.classList.add('hidden');
 
-                if (index - 1 <= step) indicator.onclick = () =>  {
-                    goToStep(index)
-                    currentStep += index - step
-                }
-                else indicator.onclick = null
-            })
-            if (config[step].buttonPrevious) {
-                buttonPrevious.textContent = config[step].buttonPrevious
-                buttonPrevious.classList.remove('hidden')
-                buttonPrevious.onclick = () => {
-                    goToStep(--step)
-                    currentStep--
-                }
-            }
-            else buttonPrevious.classList.add('hidden')
+        if (config[step].buttonNext) {
+          buttonNext.textContent = config[step].buttonNext;
+          buttonNext.classList.remove('hidden');
+          buttonNext.onclick = () => {
+            goToStep(++step);
+            currentStep++;
+          };
+        } else buttonNext.classList.add('hidden');
 
-            if (config[step].buttonNext) {
-                buttonNext.textContent = config[step].buttonNext
-                buttonNext.classList.remove('hidden')
-                buttonNext.onclick = () => { 
-                    goToStep(++step)
-                    currentStep++
-                }
-            }
-            else buttonNext.classList.add('hidden')
+        currentStepHint.textContent = config[step].hint;
+      };
 
-            currentStepHint.textContent = config[step].hint
-        }
-
-        goToStep(0)
+      goToStep(0);
     </script>
-</body>
+  </body>
 </html>
