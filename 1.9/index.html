@@ -1,12 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Sticky</title>
-</head>
-<body>
-    <!--
+    <head>
+        <title>Sticky</title>
+    </head>
+    <body>
+        <!--
         Write a script that works almost like position: sticky in css.
         Whenever you scroll and element is about to get off the screen - it should stick to the top and follow the scroll.
     -->
-</body>
+        <div class="container"></div>
+        <div class="paper"></div>
+
+        <style>
+            body {
+                background-color: #fbfafb;
+            }
+
+            .container {
+                margin: 40px 0 40px 50%;
+                width: 720px;
+                background-color: #f2f0f2;
+                height: 200vh;
+                border-radius: 4px;
+            }
+
+            .paper {
+                position: absolute;
+                top: 100px;
+                left: calc(50% - 300px);
+                width: 240px;
+                height: 200px;
+                background-color: #fff;
+                border: 1px solid #f1f1f1;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
+                box-shadow: -1px 1px 10px #ccc;
+            }
+
+            .paper--fixed {
+                position: fixed;
+                top: 20px;
+            }
+        </style>
+
+        <script>
+            const paper = document.querySelector('.paper');
+            const fixedClass = 'paper--fixed';
+            const offset = 20;
+            let startPosition = null;
+
+            document.addEventListener('scroll', () => {
+                const rect = paper.getBoundingClientRect();
+
+                if (startPosition === null && rect.top <= offset) {
+                    paper.classList.add(fixedClass);
+                    startPosition = window.pageYOffset;
+                    return;
+                }
+
+                if (
+                    startPosition !== null &&
+                    startPosition >= window.pageYOffset
+                ) {
+                    paper.classList.remove(fixedClass);
+                    startPosition = null;
+                }
+            });
+        </script>
+    </body>
 </html>
