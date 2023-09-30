@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Draggable card</title>
+  </head>
+  <body>
+    <!--
+        Build a card that can be dragged with a mouse
+    -->
+    <div class="card"></div>
+  </body>
+
+  <style>
+    body {
+      background-color: #303642;
+    }
+
+    .card {
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      width: 200px;
+      height: 200px;
+      background-color: #fff;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+
+    .card:hover {
+      cursor: grab;
+      background-color: #f2f0f2;
+    }
+  </style>
+
+  <script>
+    const card = document.querySelector('.card');
+
+    card.addEventListener('mousedown', event => {
+      const moveTo = (x, y) => {
+        card.style.left = `${x - card.offsetWidth / 2}px`;
+        card.style.top = `${y - card.offsetHeight / 2}px`;
+      };
+
+      const onMouseMove = event => moveTo(event.pageX, event.pageY);
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      card.onmouseup = () => {
+        document.removeEventListener('mousemove', onMouseMove);
+        card.onmouseup = null;
+      };
+    });
+  </script>
+</html>
