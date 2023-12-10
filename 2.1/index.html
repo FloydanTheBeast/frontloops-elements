@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Code</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--
+        Build a verification code form.
+        Focusing on any input should bring the focus to the first empty input.
+        Entering a value should switch the focus to the next input.
+        Deleting a value should delete the last filled value.
+        Submitting the form should alert the submitted code.
+    -->
+    <div class="form-container">
+      <form class="code-form">
+        <h2>Enter code:</h2>
+        <div class="code-input">
+          <div class="code-input-group">
+            <input type="number" min="0" max="9" data-n="0" />
+            <input type="number" min="0" max="9" data-n="1" />
+            <input type="number" min="0" max="9" data-n="2" />
+          </div>
+          <hr class="horizontal" />
+          <div class="code-input-group">
+            <input type="number" min="0" max="9" data-n="3" />
+            <input type="number" min="0" max="9" data-n="4" />
+            <input type="number" min="0" max="9" data-n="5" />
+          </div>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+
+  <script>
+    const codeForm = document.querySelector('.code-form');
+    const codeInput = document.querySelector('.code-input');
+    const digitInputs = Array.from(document.querySelectorAll('input[type="number"]'));
+
+    let focusedInput = null;
+
+    const changeFocus = action => {
+      switch (action) {
+        case 'NEXT':
+          focusedInput =
+            digitInputs.find(({ dataset }) => +dataset?.n === +focusedInput?.dataset?.n + 1) ||
+            focusedInput;
+          break;
+        case 'PREVIOUS':
+          focusedInput =
+            digitInputs.find(({ dataset }) => +dataset?.n === +focusedInput?.dataset?.n - 1) ||
+            focusedInput;
+          break;
+      }
+
+      focusedInput?.focus();
+    };
+
+    digitInputs.forEach(input =>
+      input.addEventListener('focus', ({ target }) => {
+        focusedInput = target;
+
+        if (!target.value) {
+          focusedInput = digitInputs.find(input => !input.value) || target;
+          focusedInput?.focus();
+        }
+      }),
+    );
+
+    codeInput.addEventListener('input', event => {
+      if (event.target.nodeName !== 'INPUT') return;
+
+      if (event.target.value.length > 1) {
+        event.target.value = event.target.value.slice(0, 1);
+      }
+
+      if (event.target.value.length === 1) {
+        changeFocus('NEXT');
+      }
+    });
+
+    codeInput.addEventListener('keydown', event => {
+      const key = event.keyCode || event.charCode;
+
+      if (!(key == 8 || key == 46)) return;
+
+      event.preventDefault();
+
+      if (event.target.value.length === 0) {
+        changeFocus('PREVIOUS');
+      } else {
+        event.target.value = '';
+      }
+    });
+
+    codeForm.addEventListener('submit', event => {
+      event.preventDefault();
+      const value = digitInputs.map(({ value }) => value).join('');
+      if (value.length >= 6) {
+        alert(`Value is ${value}`);
+      } else {
+        alert('Please enter code');
+      }
+    });
+  </script>
+</html>
