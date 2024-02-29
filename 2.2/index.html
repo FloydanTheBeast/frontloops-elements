@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multiselect</title>
+  </head>
+  <link rel="stylesheet" href="./style.css" />
+  <body>
+    <!--
+        Build a multiselect with a list of options and Check all button.
+        Clicking on option toggles its checked state and update the display for selected values.
+        If all of the options were selected by clicking them - Check all button should also get checked.
+        Display element should display first two checked elements from the list and collapse all others (and x more)
+    -->
+    <template id="multiselect-tmpl">
+      <style>
+        :host {
+          display: block;
+          width: 500px;
+        }
+
+        .multiselect {
+          width: 500px;
+          background-color: #fff;
+          padding: 16px;
+          border-radius: 4px;
+        }
+
+        hr {
+          border: none;
+          border-top: 1px solid #e1e1e1;
+        }
+
+        .multiselect-input {
+          border: none;
+          width: 100%;
+          outline: none;
+          padding: 8px 0;
+        }
+
+        .multiselect-list {
+          list-style: none;
+          padding: 0;
+        }
+
+        ::slotted([slot='check-all']) {
+          font-weight: 600;
+        }
+
+        ::slotted(li) {
+          cursor: pointer;
+          padding: 16px 8px;
+          border-radius: 4px;
+        }
+
+        ::slotted(li:not(:last-child):not(:first-child)) {
+          margin: 4px 0;
+        }
+
+        ::slotted(li.active) {
+          background-color: #f1f1f1;
+        }
+      </style>
+
+      <div class="multiselect">
+        <input class="multiselect-input" placeholder="Please, select your food" readonly />
+        <hr />
+        <ul class="multiselect-list">
+          <slot name="check-all"></slot>
+          <slot name="multiselect-item"></slot>
+        </ul>
+      </div>
+    </template>
+
+    <multi-select>
+      <li slot="check-all">Check all</li>
+      <li slot="multiselect-item">Ice-cream</li>
+      <li slot="multiselect-item">Hot-dog</li>
+      <li slot="multiselect-item">Popcord</li>
+      <li slot="multiselect-item">Cookie</li>
+    </multi-select>
+
+    <script>
+      const multiselectTemplate = document.querySelector('#multiselect-tmpl');
+
+      customElements.define(
+        'multi-select',
+        class extends HTMLElement {
+          connectedCallback() {
+            const activeItems = new Set();
+
+            const shadow = this.attachShadow({ mode: 'open' });
+
+            shadow.append(multiselectTemplate.content.cloneNode(true));
+
+            const input = shadow.querySelector('.multiselect-input');
+            const list = shadow.querySelector('.multiselect-list');
+            const checkAllButton = shadow.querySelector('slot[name="check-all"]');
+            const listItems = shadow
+              .querySelector('slot[name="multiselect-item"]')
+              .assignedElements();
+
+            checkAllButton.addEventListener('click', _ => {
+              if (activeItems.size < 4) {
+                listItems.forEach(item => {
+                  activeItems.add.bind(activeItems)(item);
+                  item.classList.add('active');
+                });
+
+                checkAllButton.assignedElements()[0]?.classList.add('active');
+              } else {
+                listItems.forEach(item => {
+                  activeItems.delete.bind(activeItems)(item);
+                  item.classList.remove('active');
+                });
+
+                checkAllButton.assignedElements()[0]?.classList.remove('active');
+              }
+
+              input.value =
+                Array.from(activeItems)
+                  .slice(0, 2)
+                  .map(item => item.textContent)
+                  .join(', ') + (activeItems.size > 2 ? ` and ${activeItems.size - 2} more` : '');
+            });
+
+            list.addEventListener('click', e => {
+              const slotName = e.target.slot;
+
+              if (slotName !== 'multiselect-item') {
+                return;
+              }
+
+              const isAdded = e.target.classList.toggle('active');
+
+              if (isAdded) {
+                activeItems.add(e.target);
+              } else {
+                activeItems.delete(e.target);
+              }
+
+              if (activeItems.size >= 4) {
+                checkAllButton.assignedElements()[0]?.classList.add('active');
+              } else {
+                checkAllButton.assignedElements()[0]?.classList.remove('active');
+              }
+
+              input.value =
+                Array.from(activeItems)
+                  .slice(0, 2)
+                  .map(item => item.textContent)
+                  .join(', ') + (activeItems.size > 2 ? ` and ${activeItems.size - 2} more` : '');
+            });
+          }
+        },
+      );
+    </script>
+  </body>
+</html>
