@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Card slider</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!--
+        Build a card slider, that can be navigated by pressing next/previous buttons.
+        Each time button is pressed - slider position should be changed to the left border of the next card,
+        but not greater than the right border of the last card.
+        Slider controls should toggle based on the slider position.
+    -->
+
+    <div class="slider-card">
+      <button class="controls hidden" data-action="prev"></button>
+      <button class="controls" data-action="next"></button>
+      <div class="slider-card_container"></div>
+    </div>
+
+    <script>
+      const $ = selectors => document.querySelector(selectors);
+
+      const palette = [
+        'rgba(0, 184, 148,1.0)',
+        'rgba(253, 203, 110,1.0)',
+        'rgba(0, 206, 201,1.0)',
+        'rgba(108, 92, 231,1.0)',
+        'rgba(9, 132, 227,1.0)',
+        'rgba(232, 67, 147,1.0)',
+        'rgba(214, 48, 49,1.0)',
+        'rgba(178, 190, 195,1.0)',
+        'rgba(45, 52, 54,1.0)',
+      ];
+
+      class ColorCard {
+        constructor(color) {
+          this.color = color;
+          this.width = Math.round(30 + Math.random() * 120);
+        }
+      }
+
+      const sliderContainer = $('.slider-card_container');
+      const prevButton = $('.controls[data-action="prev"]');
+      const nextButton = $('.controls[data-action="next"]');
+
+      const colorCards = Array.from(
+        (function* () {
+          const p = [...palette];
+
+          while (p.length) {
+            const color = p.splice(Math.random() * (p.length - 1), 1)[0];
+            yield new ColorCard(color);
+          }
+        })(),
+      );
+
+      colorCards.forEach((card, idx) => {
+        const div = document.createElement('div');
+
+        div.dataset['idx'] = idx;
+        div.classList.add('slider-card_container_item');
+        div.style.width = `${card.width}px`;
+        div.style.backgroundColor = card.color;
+
+        sliderContainer.appendChild(div);
+      });
+
+      const gap = +window.getComputedStyle(sliderContainer).gap.match(/[0-9]+/);
+
+      let currentIdx = 1;
+      let scrollEnded = false;
+
+      const scrollSlider = (forward = true) => {
+        currentIdx += forward ? 1 : -1;
+        const currentColorCard = $(`.slider-card_container_item[data-idx='${currentIdx}']`);
+
+        const scrollLeft = currentColorCard.offsetLeft - gap;
+
+        sliderContainer.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth',
+        });
+
+        scrollEnded =
+          Math.ceil(sliderContainer.offsetWidth + scrollLeft) >= sliderContainer.scrollWidth;
+
+        if (scrollEnded) {
+          nextButton.classList.add('hidden');
+        } else {
+          nextButton.classList.remove('hidden');
+        }
+
+        if (currentIdx <= 1) {
+          prevButton.classList.add('hidden');
+        } else {
+          prevButton.classList.remove('hidden');
+        }
+      };
+
+      nextButton.addEventListener('click', () => scrollSlider());
+      prevButton.addEventListener('click', () => scrollSlider(false));
+
+      console.log(nextButton);
+    </script>
+  </body>
+</html>
