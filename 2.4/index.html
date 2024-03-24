@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Validation</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <!--
+        Build a script for form validation.
+        It should validate form on its submit and should support required fields, emails
+        and field confirmation (should check if the value of the linked field is the same).
+        If form is invalid it shouldn't be submitted and errors must be shown.
+    -->
+    <div class="card">
+      <form id="form">
+        <fieldset>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" />
+        </fieldset>
+        <fieldset>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="text" />
+        </fieldset>
+        <fieldset>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" />
+        </fieldset>
+        <fieldset>
+          <label for="confirm-password">Confirm Password</label>
+          <input id="confirm-password" name="confirm-password" type="password" />
+        </fieldset>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
