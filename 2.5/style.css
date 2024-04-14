@@ -1,0 +1,51 @@
+html {
+  font-family: Helvetica, sans-serif;
+}
+
+kbd {
+  background-color: #eee;
+  padding: 4px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-family: sans-serif;
+}
+
+.app-info {
+  width: 500px;
+  margin: 100px auto 0;
+  padding: 20px 0;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.color-picker {
+  opacity: 0;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: #00000088;
+  padding: 20px;
+  border-radius: 4px;
+  column-gap: 12px;
+  transition: opacity 0.2s;
+}
+
+.color-picker.visible {
+  opacity: 1;
+}
+
+.color-picker_item {
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.color-picker_item.active {
+  border: 4px solid #fff;
+}

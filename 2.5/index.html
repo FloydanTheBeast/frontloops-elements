@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Color picker</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!--
+        Write a script that opens color picker when shift + tab is pressed.
+        While you hold shift - it is possible to navigate through colors by pressing tab.
+        (The same way alt + tab through apps does)
+        When shift + tab are released - change the color of the body to the chosen color.
+    -->
+
+    <div class="app-info">Press <kbd>⇧ Shift</kbd> + <kbd>Tab ↹</kbd> to choose color</div>
+    <div class="color-picker"></div>
+  </body>
+
+  <script>
+    const palette = [
+      'rgba(0, 184, 148,1.0)',
+      'rgba(253, 203, 110,1.0)',
+      'rgba(108, 92, 231,1.0)',
+      'rgba(9, 132, 227,1.0)',
+      'rgba(214, 48, 49,1.0)',
+    ];
+
+    const colorPicker = document.querySelector('.color-picker');
+    const colorPickerItems = palette.map((color, idx) => {
+      const colorPickerItem = document.createElement('div');
+
+      colorPickerItem.classList.add('color-picker_item');
+      colorPickerItem.style.backgroundColor = color;
+      colorPickerItem.dataset.colorIdx = idx;
+
+      colorPicker.appendChild(colorPickerItem);
+
+      return colorPickerItem;
+    });
+
+    let appColorIdx = 0;
+    let isPickerOpen = false;
+    let colorAutoSwitcherTimeout, colorAutoSwitcherInterval;
+
+    const switchColor = newIdx => {
+      newIdx = newIdx ?? (appColorIdx + 1) % palette.length;
+      document.body.style.backgroundColor = palette[newIdx];
+
+      colorPickerItems[appColorIdx].classList.remove('active');
+      colorPickerItems[newIdx].classList.add('active');
+
+      appColorIdx = newIdx;
+    };
+
+    const toggleColorPicker = isOpenState => {
+      if (isPickerOpen !== isOpenState) {
+        isPickerOpen = isOpenState;
+        colorPicker.classList.toggle('visible', isPickerOpen);
+      }
+    };
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Tab' && e.shiftKey) {
+        e.preventDefault();
+        toggleColorPicker(true);
+        switchColor();
+      }
+    });
+
+    document.addEventListener('keyup', e => {
+      if (e.key === 'Shift') {
+        toggleColorPicker(false);
+
+        clearTimeout(colorAutoSwitcherTimeout);
+        clearInterval(colorAutoSwitcherInterval);
+      }
+    });
+
+    (function initApp() {
+      switchColor(0);
+    })();
+  </script>
+</html>
