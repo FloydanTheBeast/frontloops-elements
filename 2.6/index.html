@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Boiling dots</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./main.js" type="module" defer></script>
+  </head>
+  <body>
+    <!--
+        Build a component that has a text input with a submit button.
+        Whenever you enter a number and submit it - an animated boiling circle with timer is added to the component.
+        Once timer expires - circle should "pop".
+        Several timers can be set at the same time.
+    -->
+    <div class="timer">
+      <form class="timer-form">
+        <div class="timer-form_container">
+          <input type="number" name="timer-seconds" class="timer-form_input" />
+          <button type="submit">Start boiling</button>
+        </div>
+      </form>
+      <div class="timer_items-container"></div>
+    </div>
+  </body>
+</html>

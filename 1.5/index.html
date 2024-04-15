@@ -46,6 +46,7 @@
       const startTyping = (wordList, wordIndex, typingDelay) => {
         const currentWord = wordList[wordIndex % wordVariations.length];
         simulateTyping(currentWord, typingDelay);
+
         setTimeout(
           () => startTyping(wordList, ++wordIndex, typingDelay),
           (typingDelay + Math.floor(typingDelay / 2)) * currentWord.length +
@@ -66,20 +67,18 @@
             );
         } else {
           changingText.textContent = changingText.textContent.slice(0, -1);
+
           if (charIndex >= 0)
             setTimeout(
               () => simulateTyping(word, typingDelay, --charIndex, true),
               Math.floor(typingDelay / 2),
             );
         }
-        // if (isDeleting && charIndex == 0)
       };
 
       window.onload = () => {
         startTyping(wordVariations, 0, 150);
       };
-      // setInterval(() => console.log(isTyping), 300)
-      // while (1) console.log(isTyping)
     </script>
   </body>
 </html>
