@@ -1,0 +1,53 @@
+body {
+  background-color: #fea37e;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 32px;
+}
+
+#slider-value {
+  font-weight: 600;
+  font-size: 20px;
+  user-select: none;
+  margin-top: 0;
+}
+
+.slider-container {
+  width: 100%;
+  height: 6px;
+  background-color: #f1f1f1;
+}
+
+.slider-container_slider {
+  position: relative;
+  width: 0;
+  height: 6px;
+  background-color: #7e8b8c;
+}
+
+.slider-container_slider_slider-pin {
+  position: absolute;
+  display: block;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  border: 3px solid #bdc3c7;
+  top: 50%;
+  transform: translate(50%, -50%);
+  background-color: #fff;
+  right: 0;
+}
+
+.slider-container_slider_slider-pin:hover {
+  cursor: pointer;
+  border-color: #7e8b8c;
+}
