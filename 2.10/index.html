@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Accordion</title>
+    <script src="./main.ts" type="module" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!--
+        Build an animated accordion component.
+        Whenever accordion title is clicked - its section should be toggled with animation.
+        Only one section can be active at a time.
+        Section contents can have any number of text lines inside.
+    -->
+    <custom-accordion
+      items='[
+        { "title": "Hotel facilities", "text": "We&#39;ve got everything you need covered, from hairdryer to ski storage at the lobby. Don&#39;t worry about that!" }, 
+        { "title": "Closest beach", "text": "We&#39;ve got no real beach anywhere closely to ou hotel. There are mountains though!" },
+        { "title": "How to get here", "text": "By plain, you silly." }
+      ]'
+    ></custom-accordion>
+  </body>
+</html>
