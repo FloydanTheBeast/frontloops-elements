@@ -1,0 +1,67 @@
+body {
+  background-color: #8E44AE;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 32px;
+}
+
+button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #F1F1F1;
+  position: relative;
+  border: none;
+  outline: none;
+}
+
+button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #333;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:hover::after {
+  background-color: #FE6860;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.calendar__container {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar__container > span {
+  width: 60px;
+}
+.current {
+  font-weight: 600;
+}
