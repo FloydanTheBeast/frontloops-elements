@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #228B75;
+  margin: 0
+}
+
+.card {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 32px 64px;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 4px;
+}
+
+button {
+  background-color: #ECECEC;
+  padding: 8px;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #E0E0E0;
+}
+
+.toast {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 16px;
+  border-radius: 4px;
+  color: #fff;
+  animation: slide-in 0.3s;
+  transition: top 0.3s;
+}
+
+.toast.hiding {
+  top: -50px;
+}
+
+.toast_message {
+  background-color: #323232;
+}
+
+.toast_alert {
+  background-color: #EE5152;
+}
+
+@keyframes slide-in {
+  from {
+    top: -50px;
+  }
+
+  to {
+    top: 0;
+  }
+}
