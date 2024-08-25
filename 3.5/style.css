@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFBE76;
+}
+
+.card {
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  transform: translateX(-50%);
+  width: 600px;
+}
+
+.container {
+  margin-bottom: 8px;
+  transition: height 0.5s;
+  overflow: hidden;
+}
+
+.items-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.items-list > div {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+button {
+  background-color: #F1F1F1;
+  border: none;
+  grid-column: span 2;
+  padding: 12px;
+  border-radius: 4px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: #eee;
+}
+
+.loading {
+  cursor: progress;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
