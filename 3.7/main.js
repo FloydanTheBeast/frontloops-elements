@@ -18,7 +18,7 @@ function spawnRipple(e) {
     ripple.style.display = 'unset';
     ripple.style.left = `${e.clientX - ripple.offsetWidth / 2}px`;
     ripple.style.top = `${e.clientY - ripple.offsetHeight / 2}px`;
-    setTimeout(() => body.removeChild(ripple), 500);
+    ripple.addEventListener('animationend', () => ripple.remove());
   }, 0);
 }
 
