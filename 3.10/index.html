@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zoom</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" defer src="./main.ts"></script>
+  </head>
+  <body>
+    <!--
+        Write a script that add a zooming lens next to hovered image
+    -->
+
+    <zoomable-container zoom="1.5" lensSize="256">
+      <div slot="element-to-zoom">
+        <img width="100%" src="./img.jpg" alt="Random image" />
+      </div>
+      <p slot="element-to-zoom">
+        Lorem ipsum odor amet, consectetuer adipiscing elit. Arcu nibh mus duis lorem placerat elit.
+        Sem sollicitudin efficitur sit ut faucibus ipsum cras. Fringilla egestas consequat per
+        maximus at massa purus. Suscipit ornare orci class dignissim egestas maecenas potenti. Vitae
+        finibus sapien mi lacus magnis.
+        <br />
+        <br />
+        Penatibus pretium sed magnis cubilia conubia proin lectus primis convallis. Quam luctus
+        libero quam ornare ante class et at. Sapien justo facilisi orci auctor tristique auctor.
+        Integer fringilla in neque felis consequat dictumst? Maximus at accumsan luctus vel; morbi
+        neque. Placerat dis nascetur gravida interdum vestibulum facilisis sollicitudin convallis.
+        Conubia nisi nulla proin, ultrices proin senectus dui dis etiam. Sodales etiam parturient
+        mattis curabitur nibh vel ullamcorper vestibulum.
+        <br />
+        <br />
+        Molestie quam malesuada purus erat ultricies pulvinar eros porttitor. Tristique velit
+        volutpat at ullamcorper litora mollis commodo ex. Sollicitudin arcu eget mollis magnis est
+        adipiscing semper tellus sagittis. Ligula id metus efficitur nullam proin. Curae fusce sed
+        sapien porttitor accumsan. Ex vitae tempor tortor egestas nulla primis finibus ante.
+      </p>
+    </zoomable-container>
+  </body>
+</html>
